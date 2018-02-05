@@ -57,17 +57,18 @@ sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
 #sed -i 's/net.ipv6.conf.lo.disable_ipv6 = 0/net.ipv6.conf.lo.disable_ipv6 = 1/g' /etc/sysctl.conf
 #sed -i 's/net.ipv6.conf.eth0.disable_ipv6 = 0/net.ipv6.conf.eth0.disable_ipv6 = 1/g' /etc/sysctl.conf
 #sysctl -p
-
+echo -e "\e[40;38;5;226 " 
+echo "=============================="
+echo "        INSTALL BADVPN       "
+echo "=============================="
 # install wget and curl
 apt-get update;apt-get -y install wget curl;
 apt-get install gem
 # set time GMT +7
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
-
 # set locale
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 service ssh restart
-
 # remove unused
 apt-get -y --purge remove samba*;
 apt-get -y --purge remove apache2*;
@@ -359,25 +360,23 @@ apt-get -y install debsums
 apt-get -y install rkhunter
 apt-get -y install build-essential
 apt-get -y --force-yes -f install libxml-parser-perl
-
+echo -e "\e[40;38;5;226 " 
+echo "=============================="
+echo "        INSTALL BADVPN       "
+echo "=============================="
 # disable exim
 service exim4 stop
 sysv-rc-conf exim4 off
-
 # update apt-file
 apt-file update
-
 # setting vnstat
 vnstat -u -i $ether
 service vnstat restart
-
 #text gambar
 apt-get install boxes
-
 # text pelangi
 sudo apt-get install ruby
 sudo gem install lolcat
-
 # text warna
 cd
 rm -rf /root/.bashrc
@@ -403,7 +402,6 @@ wget -O /home/vps/public_html/uptime.php "http://autoscript.kepalatupai.com/upti
 wget -O /home/vps/public_html/index.html "http://borneobesthosting.me/index.html"
 service php5-fpm restart
 service nginx restart
-cd
 echo -e "\e[40;38;5;101m " 
 echo "=============================="
 echo "       INSTALL OPENVPN    "
@@ -422,6 +420,10 @@ wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/Mbah-Sh
 chmod +x /etc/network/if-up.d/iptables
 service openvpn restart
 echo -e "\e[40;38;5;101m " 
+echo -e "\e[40;38;5;226 " 
+echo "=============================="
+echo "        INSTALL BADVPN       "
+echo "=============================="
 #konfigurasi openvpn
 cd /etc/openvpn/
 wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/Mbah-Shondong/Debian732/master/Debian7/client-1194.conf"
@@ -641,11 +643,11 @@ echo "=============================="
 cd
 wget -q -O /usr/bin/bongkar "https://raw.githubusercontent.com/yanncam/UnSHc/master/latest/unshc.sh"
 chmod +x /usr/bin/bongkar
-echo -e "\e[40;38;5;101m " 
-echo "=============================="
-echo "       INSTALL WEBMIN       "
-echo "=============================="
 # install webmin
+echo -e "\e[40;38;5;226 " 
+echo "=============================="
+echo "        INSTALL BADVPN       "
+echo "=============================="
 cd
 #wget -O webmin-current.deb http://prdownloads.sourceforge.net/webadmin/webmin_1.760_all.deb
 wget -O webmin-current.deb $source/debian7/webmin-current.deb
