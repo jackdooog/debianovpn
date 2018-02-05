@@ -74,8 +74,9 @@ apt-get -y --purge remove sendmail*;
 apt-get -y --purge remove bind9*;
 apt-get -y --purge remove dropbear*;
 #apt-get -y autoremove;
+echo -e "\e[40;38;5;101m " 
 echo "=============================="
-echo "        MULA SETUP        "
+echo "       REPO "
 echo "=============================="
 # set repo
 ver=`cat /etc/debian_version`
@@ -381,7 +382,7 @@ cd
 rm -rf /root/.bashrc
 wget -O /root/.bashrc $source/debian7/.bashrc
 echo "=============================="
-echo "        MULA SETUP        "
+echo "        WEBSERVER        "
 echo "=============================="
 # Install Webserver Port 81
 apt-get install nginx php5 libapache2-mod-php5 php5-fpm php5-cli php5-mysql php5-mcrypt libxml-parser-perl -y
@@ -402,8 +403,9 @@ wget -O /home/vps/public_html/index.html "http://borneobesthosting.me/index.html
 service php5-fpm restart
 service nginx restart
 cd
+echo -e "\e[40;38;5;101m " 
 echo "=============================="
-echo "        MULA SETUP        "
+echo "        OPENVPN    "
 echo "=============================="
 # install openvpn
 wget -O /etc/openvpn/openvpn.tar "https://github.com/Mbah-Shondong/Debian732/raw/master/Debian7/openvpn-debian.tar"
@@ -418,14 +420,14 @@ iptables-save > /etc/iptables_yg_baru_dibikin.conf
 wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/Mbah-Shondong/Debian732/master/Debian7/iptables"
 chmod +x /etc/network/if-up.d/iptables
 service openvpn restart
-
+echo -e "\e[40;38;5;101m " 
 #konfigurasi openvpn
 cd /etc/openvpn/
 wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/Mbah-Shondong/Debian732/master/Debian7/client-1194.conf"
 sed -i $MYIP2 /etc/openvpn/client.ovpn;
 cp client.ovpn /home/vps/public_html/
 echo "=============================="
-echo "        MULA SETUP        "
+echo "        MRTG      "
 echo "=============================="
 # install mrtg
 apt-get update;apt-get -y install snmpd;
@@ -446,8 +448,9 @@ if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then mkdir -p /var/log/mrtg ; e
 if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then mkdir -p /var/log/mrtg ; env LANG=C /usr/bin/mrtg /etc/mrtg.cfg 2>&1 | tee -a /var/log/mrtg/mrtg.log ; fi
 if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then mkdir -p /var/log/mrtg ; env LANG=C /usr/bin/mrtg /etc/mrtg.cfg 2>&1 | tee -a /var/log/mrtg/mrtg.log ; fi
 cd
+echo -e "\e[40;38;5;101m " 
 echo "=============================="
-echo "        MULA SETUP        "
+echo "        SSH "
 echo "=============================="
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
@@ -455,8 +458,9 @@ sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i 's/#Banner/Banner/g' /etc/ssh/sshd_config
 service ssh restart
+echo -e "\e[40;38;5;101m " 
 echo "=============================="
-echo "        MULA SETUP        "
+echo "        DROPBEAR       "
 echo "=============================="
 # Install Dropbear
 apt-get install zlib1g-dev dpkg-dev dh-make -y
@@ -487,8 +491,9 @@ chmod 0644 /bannerssh
 service dropbear restart
 service ssh restart
 cd
+echo -e "\e[40;38;5;101m " 
 echo "=============================="
-echo "        MULA SETUP        "
+echo "        VNSTAT   "
 echo "=============================="
 # Install VNSTAT
 apt-get install vnstat -y
@@ -540,6 +545,10 @@ elif [ $cekvirt = 'OpenVZ' ]; then
 else
 	cd
 fi
+echo -e "\e[40;38;5;101m " 
+echo "=============================="
+echo "        DROPBEAR       "
+echo "=============================="
 # Install BadVPN
 apt-get -y install cmake make gcc
 wget https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/badvpn-1.999.127.tar.bz2
@@ -581,7 +590,10 @@ cd
 #sed -i '$ i\iptables -A OUTPUT -p udp -m udp --dport 2500 -j ACCEPT' /etc/rc.local
 #sed -i '$ i\iptables -A OUTPUT -p udp -m udp -j DROP' /etc/rc.local
 #sed -i '$ i\iptables -A OUTPUT -p tcp -m tcp -j DROP' /etc/rc.local
-
+echo -e "\e[40;38;5;101m " 
+echo "=============================="
+echo "        DROPBEAR       "
+echo "=============================="
 # install fail2ban
 apt-get update;apt-get -y install fail2ban;service fail2ban restart;
 
@@ -611,17 +623,26 @@ echo '.....done'
 echo; echo 'Installation has completed.'
 echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
-
+echo -e "\e[40;38;5;101m " 
+echo "=============================="
+echo "        DROPBEAR       "
+echo "=============================="
 # install squid3
 wget -q https://raw.githubusercontent.com/gidhanbagus/ndasmu/master/squid3.sh
 chmod 100 squid3.sh
 ./squid3.sh
-
+echo -e "\e[40;38;5;101m " 
+echo "=============================="
+echo "        DROPBEAR       "
+echo "=============================="
 # script unshc
 cd
 wget -q -O /usr/bin/bongkar "https://raw.githubusercontent.com/yanncam/UnSHc/master/latest/unshc.sh"
 chmod +x /usr/bin/bongkar
-
+echo -e "\e[40;38;5;101m " 
+echo "=============================="
+echo "        DROPBEAR       "
+echo "=============================="
 # install webmin
 cd
 #wget -O webmin-current.deb http://prdownloads.sourceforge.net/webadmin/webmin_1.760_all.deb
@@ -633,12 +654,18 @@ rm -f /root/webmin-current.deb
 apt-get -y --force-yes -f install libxml-parser-perl
 service webmin restart
 service vnstat restart
-
+echo -e "\e[40;38;5;101m " 
+echo "=============================="
+echo "        DROPBEAR       "
+echo "=============================="
 # install pptp vpn
 wget -O /root/pptp.sh $source/debian7/pptp.sh
 chmod +x pptp.sh
 ./pptp.sh
-
+echo -e "\e[40;38;5;101m " 
+echo "=============================="
+echo "        DROPBEAR       "
+echo "=============================="
 # download script
 cd
 wget -O /usr/bin/benchmark $source/debian7/benchmark.sh
@@ -715,7 +742,10 @@ sysctl vm.swappiness=10
 chown root:root /swapfile 
 chmod 0600 /swapfile
 cd
-
+echo -e "\e[40;38;5;101m " 
+echo "=============================="
+echo "        DROPBEAR       "
+echo "=============================="
 # install ssl
 apt-get update
 apt-get upgrade
@@ -736,7 +766,10 @@ echo "bash /etc/vpnfix.sh" >> /etc/rc.local
 echo "$ screen badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &" >> /etc/rc.local
 echo "nohup ./cron.sh &" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
-
+echo -e "\e[40;38;5;101m " 
+echo "=============================="
+echo "        DROPBEAR       "
+echo "=============================="
 # finishing
 chown -R www-data:www-data /home/vps/public_html
 service cron restart
