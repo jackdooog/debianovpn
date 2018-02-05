@@ -674,9 +674,16 @@ chown root:root /swapfile
 chmod 0600 /swapfile
 cd
 
-# install stunnel4 ssl
-wget http://apache.me/repo/Debian7/stunnel4.sh && chmod +x stunnel4.sh && ./stunnel4.sh
-
+# install ssl
+apt-get update
+apt-get upgrade
+apt-get install stunnel4
+wget -O /etc/stunnel/stunnel.conf "http://insomnet4u.me/aneka/aneka/stunnel.conf"
+openssl genrsa -out key.pem 2048
+openssl req -new -x509 -key key.pem -out cert.pem -days 1095
+cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
+sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
+/etc/init.d/stunnel4 restart
 
 # Finishing
 wget -O /etc/vpnfix.sh "https://raw.githubusercontent.com/jackdooog/debianovpn/master/vpnfix.sh"
@@ -687,8 +694,6 @@ echo "bash /etc/vpnfix.sh" >> /etc/rc.local
 echo "$ screen badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &" >> /etc/rc.local
 echo "nohup ./cron.sh &" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
-wget https://raw.githubusercontent.com/jackdooog/debianovpn/master/remove.sh && sh remove.sh
-rm /root/debian7.sh
 
 # finishing
 chown -R www-data:www-data /home/vps/public_html
@@ -755,3 +760,14 @@ echo "Log Instalasi --> /root/log-install.txt" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo " !!! SILAHKAN REBOOT VPS ANDA !!!" | tee -a log-install.txt
 echo "=======================================================" | tee -a log-install.txt
+cd ~/
+rm -rf /root/dropbear-2014.63	rm -rf /root/badvpn-1.999.127
+	rm /root/dropbear-2014.63.tar.bz2
+	rm /root/dropbear_2014.63-0.1.dsc
+	rm /root/dropbear_2014.63-0.1.tar.gz
+	rm /root/dropbear_2014.63-0.1_*.changes
+	rm /root/dropbear_2014.63-0.1_*.deb
+	rm /root/badvpn-1.999.127.tar.bz2
+	rm /root/jcameron-key.asc
+	rm /root/squid3.sh
+	rm /root/debian7.sh
