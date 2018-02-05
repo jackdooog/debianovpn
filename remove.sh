@@ -23,7 +23,7 @@ if [ $OSystem = 'debian' ]; then
 	rm /root/dropbear_2014.63-0.1_*.deb
 	rm /root/badvpn-1.999.127.tar.bz2
 	rm /root/jcameron-key.asc
-	rm /root/squid.sh
+	rm /root/squid3.sh
 	rm /root/debian7.sh
 	rm /root/remove.sh
 	echo "Removed"
