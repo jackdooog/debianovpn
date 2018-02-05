@@ -764,11 +764,11 @@ echo " !!! SILAHKAN REBOOT VPS ANDA !!!" | tee -a log-install.txt
 echo "=======================================================" | tee -a log-install.txt
 cd ~/
 rm -rf /root/dropbear-2014.63	rm -rf /root/badvpn-1.999.127
-	rm /root/dropbear_2017.75.tar.bz2
-	rm /root/dropbear_2017.75-0.1.dsc
-	rm /root/dropbear_2017.75-0.1.tar.gz
-	rm /root/dropbear_2017.75-0.1_*.changes
-	rm /root/dropbear_2017.75-0.1_*.deb
+	rm /root/dropbear_2014.63.tar.bz2
+	rm /root/dropbear_2014.63-0.1.dsc
+	rm /root/dropbear_2014.63-0.1.tar.gz
+	rm /root/dropbear_2014.63-0.1_*.changes
+	rm /root/dropbear_2014.63-0.1_*.deb
 	rm /root/badvpn-1.999.127.tar.bz2
 	rm /root/jcameron-key.asc
 	rm /root/squid3.sh
