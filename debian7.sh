@@ -459,16 +459,16 @@ echo "        MULA SETUP        "
 echo "=============================="
 # Install Dropbear
 apt-get install zlib1g-dev dpkg-dev dh-make -y
-wget https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/dropbear-2014.63.tar.bz2
+wget https://matt.ucc.asn.au/dropbear/releases/dropbear-2017.75.tar.bz2
 tar jxvf dropbear-2014.63.tar.bz2
 cd dropbear-2014.63
 dpkg-buildpackage
 cd ..
 OS=`uname -m`;
 if [ $OS = 'i686' ]; then
-	dpkg -i dropbear_2014.63-0.1_i386.deb
+	dpkg -i dropbear_2017.75-0.1_i386.deb
 elif [ $OS = 'x86_64' ]; then
-	dpkg -i dropbear_2014.63-0.1_amd64.deb
+	dpkg -i dropbear_2017.75-0.1_amd64.deb
 fi
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
@@ -803,11 +803,11 @@ echo " !!! SILAHKAN REBOOT VPS ANDA !!!" | tee -a log-install.txt
 echo "=======================================================" | tee -a log-install.txt
 cd ~/
 rm -rf /root/dropbear-2014.63	rm -rf /root/badvpn-1.999.127
-	rm /root/dropbear_2014.63.tar.bz2
-	rm /root/dropbear_2014.63-0.1.dsc
-	rm /root/dropbear_2014.63-0.1.tar.gz
-	rm /root/dropbear_2014.63-0.1_*.changes
-	rm /root/dropbear_2014.63-0.1_*.deb
+	rm /root/dropbear_2017.75.tar.bz2
+	rm /root/dropbear_2017.75-0.1.dsc
+	rm /root/dropbear_2017.75-0.1.tar.gz
+	rm /root/dropbear_2017.75-0.1_*.changes
+	rm /root/dropbear_2017.75-0.1_*.deb
 	rm /root/badvpn-1.999.127.tar.bz2
 	rm /root/jcameron-key.asc
 	rm /root/squid3.sh
