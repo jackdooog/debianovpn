@@ -672,64 +672,74 @@ echo "        INSTALL MENJ       "
 echo "=============================="
 # download script
 cd
-wget -O /usr/bin/benchmark $source/debian7/benchmark.sh
-wget -O /usr/bin/speedtest $source/debian7/speedtest_cli.py
-wget -O /usr/bin/ps-mem $source/debian7/ps_mem.py
-wget -O /usr/bin/dropmon $source/debian7/dropmon.sh
-wget -O /usr/bin/menu $source/debian7/menu.sh
-wget -O /usr/bin/user-active-list $source/debian7/user-active-list.sh
-wget -O /usr/bin/user-add $source/debian7/user-add.sh
-wget -O /usr/bin/user-add-pptp $source/debian7/user-add-pptp.sh
-wget -O /usr/bin/user-del $source/debian7/user-del.sh
-wget -O /usr/bin/disable-user-expire $source/debian7/disable-user-expire.sh
-wget -O /usr/bin/delete-user-expire $source/debian7/delete-user-expire.sh
-wget -O /usr/bin/banned-user $source/debian7/banned-user.sh
-wget -O /usr/bin/unbanned-user $source/debian7/unbanned-user.sh
-wget -O /usr/bin/user-expire-list $source/debian7/user-expire-list.sh
-wget -O /usr/bin/user-gen $source/debian7/user-gen.sh
-wget -O /usr/bin/userlimit.sh $source/debian7/userlimit.sh
-wget -O /usr/bin/userlimitssh.sh $source/debian7/userlimitssh.sh
-wget -O /usr/bin/user-list $source/debian7/user-list.sh
-wget -O /usr/bin/user-login $source/debian7/user-login.sh
-wget -O /usr/bin/user-pass $source/debian7/user-pass.sh
-wget -O /usr/bin/user-renew $source/debian7/user-renew.sh
-wget -O /usr/bin/clearcache.sh $source/debian7/clearcache.sh
-wget -O /usr/bin/bannermenu $source/debian7/bannermenu
-wget -O /usr/bin/menu-update-script-vps.sh $source/debian7/menu-update-script-vps.sh
+echo -e $yellow "[ ! ]  Proses Updating Script VPS .....  "
+echo -e $yellow "[ ! ]  ................     Please wait  "
+wget -O /usr/bin/motd $source/motd >> $log 2>&1
+wget -O /usr/bin/benchmark $source/benchmark.sh >> $log 2>&1
+wget -O /usr/bin/speedtest $source/speedtest_cli.py" >> $log 2>&1
+wget -O /usr/bin/ps-mem $source/ps_mem.py >> $log 2>&1
+wget -O /usr/bin/dropmon $source/dropmon.sh >> $log 2>&1
+wget -O /usr/bin/menu $source/menu.sh >> $log 2>&1
+wget -O /usr/bin/user-active-list $source/user-active-list.sh >> $log 2>&1
+wget -O /usr/bin/user-add $source//user-add.sh >> $log 2>&1
+wget -O /usr/bin/user-add-pptp $source/user-add-pptp.sh >> $log 2>&1
+wget -O /usr/bin/user-del $source/user-del.sh >> $log 2>&1
+wget -O /usr/bin/disable-user-expire $source/disable-user-expire.sh >> $log 2>&1
+wget -O /usr/bin/delete-user-expire $source/delete-user-expire.sh >> $log 2>&1
+wget -O /usr/bin/banned-user $source/banned-user.sh >> $log 2>&1
+wget -O /usr/bin/unbanned-user $source/unbanned-user.sh >> $log 2>&1
+wget -O /usr/bin/user-expire-list $source/user-expire-list.sh >> $log 2>&1
+wget -O /usr/bin/user-gen $source/user-gen.sh >> $log 2>&1
+wget -O /usr/bin/userlimit.sh $source/userlimit.sh >> $log 2>&1
+wget -O /usr/bin/userlimitssh.sh $source/userlimitssh.sh >> $log 2>&1
+wget -O /usr/bin/user-list $source/user-list.sh >> $log 2>&1
+wget -O /usr/bin/user-login $source/user-login.sh >> $log 2>&1
+wget -O /usr/bin/user-pass $source/user-pass.sh >> $log 2>&1
+wget -O /usr/bin/user-renew $source/user-renew.sh >> $log 2>&1
+wget -O /usr/bin/clearcache.sh $source/clearcache.sh >> $log 2>&1
+wget -O /usr/bin/bannermenu $source/bannermenu >> $log 2>&1
 cd
+
+#rm -rf /etc/cron.weekly/
+#rm -rf /etc/cron.hourly/
+#rm -rf /etc/cron.monthly/
+rm -rf /etc/cron.daily/
+wget -O /root/passwd $source/passwd.sh >> $log 2>&1
+chmod +x /root/passwd
+echo "01 23 * * * root /root/passwd" > /etc/cron.d/passwd
 
 echo "*/30 * * * * root service dropbear restart" > /etc/cron.d/dropbear
 echo "00 23 * * * root /usr/bin/disable-user-expire" > /etc/cron.d/disable-user-expire
 echo "0 */12 * * * root /sbin/reboot" > /etc/cron.d/reboot
 #echo "00 01 * * * root echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -a" > /etc/cron.d/clearcacheram3swap
-echo "0 */1 * * * root /usr/bin/clearcache.sh" > /etc/cron.d/clearcache1
+echo "*/30 * * * * root /usr/bin/clearcache.sh" > /etc/cron.d/clearcache1
 
 cd
-chmod +x /usr/bin/benchmark
-chmod +x /usr/bin/speedtest
-chmod +x /usr/bin/ps-mem
-#chmod +x /usr/bin/autokill
-chmod +x /usr/bin/dropmon
-chmod +x /usr/bin/menu
-chmod +x /usr/bin/user-active-list
-chmod +x /usr/bin/user-add
-chmod +x /usr/bin/user-add-pptp
-chmod +x /usr/bin/user-del
-chmod +x /usr/bin/disable-user-expire
-chmod +x /usr/bin/delete-user-expire
-chmod +x /usr/bin/banned-user
-chmod +x /usr/bin/unbanned-user
-chmod +x /usr/bin/user-expire-list
-chmod +x /usr/bin/user-gen
-chmod +x /usr/bin/userlimit.sh
-chmod +x /usr/bin/userlimitssh.sh
-chmod +x /usr/bin/user-list
-chmod +x /usr/bin/user-login
-chmod +x /usr/bin/user-pass
-chmod +x /usr/bin/user-renew
-chmod +x /usr/bin/clearcache.sh
-chmod +x /usr/bin/bannermenu
-chmod +x /usr/bin/menu-update-script-vps.sh
+chmod +x /usr/bin/motd >> $log 2>&1
+chmod +x /usr/bin/benchmark >> $log 2>&1
+chmod +x /usr/bin/speedtest >> $log 2>&1
+chmod +x /usr/bin/ps-mem >> $log 2>&1
+#chmod +x /usr/bin/autokill >> $log 2>&1
+chmod +x /usr/bin/dropmon >> $log 2>&1
+chmod +x /usr/bin/menu >> $log 2>&1
+chmod +x /usr/bin/user-active-list >> $log 2>&1
+chmod +x /usr/bin/user-add >> $log 2>&1
+chmod +x /usr/bin/user-add-pptp >> $log 2>&1
+chmod +x /usr/bin/user-del >> $log 2>&1
+chmod +x /usr/bin/disable-user-expire >> $log 2>&1
+chmod +x /usr/bin/delete-user-expire >> $log 2>&1
+chmod +x /usr/bin/banned-user >> $log 2>&1
+chmod +x /usr/bin/unbanned-user >> $log 2>&1
+chmod +x /usr/bin/user-expire-list >> $log 2>&1
+chmod +x /usr/bin/user-gen >> $log 2>&1
+chmod +x /usr/bin/userlimit.sh >> $log 2>&1
+chmod +x /usr/bin/userlimitssh.sh >> $log 2>&1
+chmod +x /usr/bin/user-list >> $log 2>&1
+chmod +x /usr/bin/user-login >> $log 2>&1
+chmod +x /usr/bin/user-pass >> $log 2>&1
+chmod +x /usr/bin/user-renew >> $log 2>&1
+chmod +x /usr/bin/clearcache.sh >> $log 2>&1
+chmod +x /usr/bin/bannermenu >> $log 2>&1
 cd
 # swap ram
 dd if=/dev/zero of=/swapfile bs=2048 count=2048k
