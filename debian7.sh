@@ -317,9 +317,41 @@ apt-get -y install zip tar
 
 # install essential package
 echo "mrtg mrtg/conf_mods boolean true" | debconf-set-selections
-#apt-get -y install bmon iftop htop nmap axel nano iptables traceroute sysv-rc-conf dnsutils bc nethogs openvpn vnstat less screen psmisc apt-file whois ptunnel ngrep mtr git zsh mrtg snmp snmpd snmp-mibs-downloader unzip unrar rsyslog debsums rkhunter
-apt-get -y install bmon iftop htop nmap axel nano iptables traceroute sysv-rc-conf dnsutils bc nethogs vnstat less screen psmisc apt-file whois ptunnel ngrep mtr git zsh mrtg snmp snmpd snmp-mibs-downloader unzip unrar rsyslog debsums rkhunter
+apt-get -y install bmon 
+apt-get -y install iftop 
+apt-get -y install htop 
+apt-get -y install nmap 
+apt-get -y install axel 
+apt-get -y install nano 
+apt-get -y install iptables 
+apt-get -y install traceroute 
+apt-get -y install sysv-rc-conf 
+apt-get -y install dnsutils 
+apt-get -y install bc 
+apt-get -y install nethogs
+apt-get -y install openvpn 
+apt-get -y install vnstat 
+apt-get -y install less 
+apt-get -y install screen 
+apt-get -y install psmisc 
+apt-get -y install apt-file 
+apt-get -y install whois 
+apt-get -y install ptunnel 
+apt-get -y install ngrep 
+apt-get -y install mtr 
+apt-get -y install git 
+apt-get -y install zsh 
+apt-get -y install mrtg 
+apt-get -y install snmp 
+apt-get -y install snmpd 
+apt-get -y install snmp-mibs-downloader 
+apt-get -y install unzip 
+apt-get -y install unrar 
+apt-get -y install rsyslog 
+apt-get -y install debsums 
+apt-get -y install rkhunter
 apt-get -y install build-essential
+apt-get -y --force-yes -f install libxml-parser-perl
 
 # disable exim
 service exim4 stop
@@ -331,14 +363,6 @@ apt-file update
 # setting vnstat
 vnstat -u -i $ether
 service vnstat restart
-
-# install screenfetch
-cd
-#wget $source/debian7/screenfetch-dev
-#mv screenfetch-dev /usr/bin/screenfetch
-#chmod +x /usr/bin/screenfetch
-#echo "clear" >> .profile
-#echo "screenfetch" >> .profile
 
 #text gambar
 apt-get install boxes
@@ -523,10 +547,14 @@ cd
 apt-get update;apt-get -y install fail2ban;service fail2ban restart
 
 # install squid3
-apt-get -y install squid3
-wget -O /etc/squid3/squid.conf $source/debian7/squid3.conf
-sed -i $MYIP2 /etc/squid3/squid.conf;
-service squid3 restart
+wget -q https://raw.githubusercontent.com/gidhanbagus/ndasmu/master/squid3.sh
+chmod 100 squid3.sh
+./squid3.sh
+
+# script unshc
+cd
+wget -q -O /usr/bin/bongkar "https://raw.githubusercontent.com/yanncam/UnSHc/master/latest/unshc.sh"
+chmod +x /usr/bin/bongkar
 
 # install webmin
 cd
