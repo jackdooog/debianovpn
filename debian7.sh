@@ -670,9 +670,6 @@ chown root:root /swapfile
 chmod 0600 /swapfile
 cd
 
-# install openvpn
-wget http://apache.me/repo/Debian7/openvpn.sh && chmod +x openvpn.sh && ./openvpn.sh
-
 # install stunnel4 ssl
 wget http://apache.me/repo/Debian7/stunnel4.sh && chmod +x stunnel4.sh && ./stunnel4.sh
 
