@@ -44,8 +44,9 @@ vps="blangkon";
 
 # go to root
 cd
-
-
+echo "=============================="
+echo "        MULA SETUP        "
+echo "=============================="
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
@@ -447,25 +448,26 @@ service ssh restart
 
 # Install Dropbear
 apt-get install zlib1g-dev dpkg-dev dh-make -y
-wget https://matt.ucc.asn.au/dropbear/releases/dropbear-2017.75.tar.bz2
+wget https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/dropbear-2014.63.tar.bz2
 tar jxvf dropbear-2014.63.tar.bz2
 cd dropbear-2014.63
 dpkg-buildpackage
 cd ..
 OS=`uname -m`;
 if [ $OS = 'i686' ]; then
-	dpkg -i dropbear_2017.75-0.1_i386.deb
+	dpkg -i dropbear_2014.63-0.1_i386.deb
 elif [ $OS = 'x86_64' ]; then
-	dpkg -i dropbear_2017.75-0.1_amd64.deb
+	dpkg -i dropbear_2014.63-0.1_amd64.deb
 fi
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 110 -p 109 -p 999"/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 110 -p 109 -p 80"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 service ssh restart
 service dropbear restart
 cd
+
 # bannerssh
 wget $source/debian7/bannerssh
 mv ./bannerssh /bannerssh
@@ -568,6 +570,33 @@ cd
 
 # install fail2ban
 apt-get update;apt-get -y install fail2ban;service fail2ban restart;
+
+# Instal (D)DoS Deflate
+if [ -d '/usr/local/ddos' ]; then
+	echo; echo; echo "Please un-install the previous version first"
+	exit 0
+else
+	mkdir /usr/local/ddos
+fi
+clear
+echo; echo 'Installing DOS-Deflate 0.6'; echo
+echo; echo -n 'Downloading source files...'
+wget -q -O /usr/local/ddos/ddos.conf http://www.inetbase.com/scripts/ddos/ddos.conf
+echo -n '.'
+wget -q -O /usr/local/ddos/LICENSE http://www.inetbase.com/scripts/ddos/LICENSE
+echo -n '.'
+wget -q -O /usr/local/ddos/ignore.ip.list http://www.inetbase.com/scripts/ddos/ignore.ip.list
+echo -n '.'
+wget -q -O /usr/local/ddos/ddos.sh http://www.inetbase.com/scripts/ddos/ddos.sh
+chmod 0755 /usr/local/ddos/ddos.sh
+cp -s /usr/local/ddos/ddos.sh /usr/local/sbin/ddos
+echo '...done'
+echo; echo -n 'Creating cron to run script every minute.....(Default setting)'
+/usr/local/ddos/ddos.sh --cron > /dev/null 2>&1
+echo '.....done'
+echo; echo 'Installation has completed.'
+echo 'Config file is at /usr/local/ddos/ddos.conf'
+echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 
 # install squid3
 wget -q https://raw.githubusercontent.com/gidhanbagus/ndasmu/master/squid3.sh
@@ -761,11 +790,11 @@ echo " !!! SILAHKAN REBOOT VPS ANDA !!!" | tee -a log-install.txt
 echo "=======================================================" | tee -a log-install.txt
 cd ~/
 rm -rf /root/dropbear-2014.63	rm -rf /root/badvpn-1.999.127
-	rm /root/dropbear_2017.75.tar.bz2
-	rm /root/dropbear_2017.75-0.1.dsc
-	rm /root/dropbear_2017.75-0.1.tar.gz
-	rm /root/dropbear_2017.75-0.1_*.changes
-	rm /root/dropbear_2017.75-0.1_*.deb
+	rm /root/dropbear_2014.63.tar.bz2
+	rm /root/dropbear_2014.63-0.1.dsc
+	rm /root/dropbear_2014.63-0.1.tar.gz
+	rm /root/dropbear_2014.63-0.1_*.changes
+	rm /root/dropbear_2014.63-0.1_*.deb
 	rm /root/badvpn-1.999.127.tar.bz2
 	rm /root/jcameron-key.asc
 	rm /root/squid3.sh
