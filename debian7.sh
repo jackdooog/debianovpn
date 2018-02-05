@@ -1,11 +1,11 @@
 #!/bin/bash
 clear
-echo "=============================="
-echo "        Selamat Datang        "
-echo "=============================="
+echo "======================================="
+echo " WELCOME TO AUTOSCRIPT BORNEOBESTHOSTING
+echo "========================================"
 echo "Ketik 'I' SETUL VPS Non-Lokal"
 echo "Ketik 'L' SETUP VPS Lokal" 
-echo "=============================="
+echo "========================================"
 read -p "Location : " -e loc
 apt-get update
 
