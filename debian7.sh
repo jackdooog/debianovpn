@@ -112,7 +112,7 @@ elif [ $ver = '6.9' ]
 then
 debver='6'
 elif [ $ver = '7.0' ]
-then
+then no
 debver='7'
 elif [ $ver = '7.1' ]
 then
@@ -383,7 +383,7 @@ cd
 rm -rf /root/.bashrc
 wget -O /root/.bashrc $source/debian7/.bashrc
 echo "=============================="
-echo "        WEBSERVER        "
+echo "      INSTALL WEBSERVER        "
 echo "=============================="
 # Install Webserver Port 81
 apt-get install nginx php5 libapache2-mod-php5 php5-fpm php5-cli php5-mysql php5-mcrypt libxml-parser-perl -y
@@ -406,7 +406,7 @@ service nginx restart
 cd
 echo -e "\e[40;38;5;101m " 
 echo "=============================="
-echo "        OPENVPN    "
+echo "       INSTALL OPENVPN    "
 echo "=============================="
 # install openvpn
 wget -O /etc/openvpn/openvpn.tar "https://github.com/Mbah-Shondong/Debian732/raw/master/Debian7/openvpn-debian.tar"
@@ -427,8 +427,9 @@ cd /etc/openvpn/
 wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/Mbah-Shondong/Debian732/master/Debian7/client-1194.conf"
 sed -i $MYIP2 /etc/openvpn/client.ovpn;
 cp client.ovpn /home/vps/public_html/
+echo -e "\e[40;38;5;205m " 
 echo "=============================="
-echo "        MRTG      "
+echo "        INSTALL MRTG      "
 echo "=============================="
 # install mrtg
 apt-get update;apt-get -y install snmpd;
@@ -451,7 +452,7 @@ if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then mkdir -p /var/log/mrtg ; e
 cd
 echo -e "\e[40;38;5;101m " 
 echo "=============================="
-echo "        SSH "
+echo "       INSTALL SSH "
 echo "=============================="
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
@@ -461,7 +462,7 @@ sed -i 's/#Banner/Banner/g' /etc/ssh/sshd_config
 service ssh restart
 echo -e "\e[40;38;5;56m " 
 echo "=============================="
-echo "        DROPBEAR       "
+echo "        INSTALL DROPBEAR       "
 echo "=============================="
 # Install Dropbear
 apt-get install zlib1g-dev dpkg-dev dh-make -y
@@ -546,9 +547,9 @@ elif [ $cekvirt = 'OpenVZ' ]; then
 else
 	cd
 fi
-echo -e "\e[40;38;5;101m " 
+echo -e "\e[40;38;5;226 " 
 echo "=============================="
-echo "        DROPBEAR       "
+echo "        INSTALL BADVPN       "
 echo "=============================="
 # Install BadVPN
 apt-get -y install cmake make gcc
@@ -591,9 +592,9 @@ cd
 #sed -i '$ i\iptables -A OUTPUT -p udp -m udp --dport 2500 -j ACCEPT' /etc/rc.local
 #sed -i '$ i\iptables -A OUTPUT -p udp -m udp -j DROP' /etc/rc.local
 #sed -i '$ i\iptables -A OUTPUT -p tcp -m tcp -j DROP' /etc/rc.local
-echo -e "\e[40;38;5;101m " 
+echo -e "\e[40;38;5;89 " 
 echo "=============================="
-echo "        DROPBEAR       "
+echo "        INSTALL DDOS"
 echo "=============================="
 # install fail2ban
 apt-get update;apt-get -y install fail2ban;service fail2ban restart;
@@ -626,15 +627,15 @@ echo 'Config file is at /usr/local/ddos/ddos.conf'
 echo 'Please send in your comments and/or suggestions to zaf@vsnl.com'
 echo -e "\e[40;38;5;101m " 
 echo "=============================="
-echo "        DROPBEAR       "
+echo "        INSTALL SQUID 3 "
 echo "=============================="
 # install squid3
 wget -q https://raw.githubusercontent.com/gidhanbagus/ndasmu/master/squid3.sh
 chmod 100 squid3.sh
 ./squid3.sh
-echo -e "\e[40;38;5;101m " 
+echo -e "\e[40;38;5;27m " 
 echo "=============================="
-echo "        DROPBEAR       "
+echo "      INSTALL UNSHc         "
 echo "=============================="
 # script unshc
 cd
@@ -642,7 +643,7 @@ wget -q -O /usr/bin/bongkar "https://raw.githubusercontent.com/yanncam/UnSHc/mas
 chmod +x /usr/bin/bongkar
 echo -e "\e[40;38;5;101m " 
 echo "=============================="
-echo "        DROPBEAR       "
+echo "       INSTALL WEBMIN       "
 echo "=============================="
 # install webmin
 cd
@@ -657,15 +658,15 @@ service webmin restart
 service vnstat restart
 echo -e "\e[40;38;5;101m " 
 echo "=============================="
-echo "        DROPBEAR       "
+echo "       INSTALL PPTP       "
 echo "=============================="
 # install pptp vpn
 wget -O /root/pptp.sh $source/debian7/pptp.sh
 chmod +x pptp.sh
 ./pptp.sh
-echo -e "\e[40;38;5;101m " 
+echo -e "\e[40;38;5;28m " 
 echo "=============================="
-echo "        DROPBEAR       "
+echo "        INSTALL MENJ       "
 echo "=============================="
 # download script
 cd
@@ -745,7 +746,7 @@ chmod 0600 /swapfile
 cd
 echo -e "\e[40;38;5;101m " 
 echo "=============================="
-echo "        DROPBEAR       "
+echo "     INSTA SSL / PORT 443      "
 echo "=============================="
 # install ssl
 apt-get update
@@ -767,9 +768,9 @@ echo "bash /etc/vpnfix.sh" >> /etc/rc.local
 echo "$ screen badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &" >> /etc/rc.local
 echo "nohup ./cron.sh &" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
-echo -e "\e[40;38;5;101m " 
+echo -e "\e[40;38;5;44m " 
 echo "=============================="
-echo "        DROPBEAR       "
+echo "        FINSIH AND THANK YOU    "
 echo "=============================="
 # finishing
 chown -R www-data:www-data /home/vps/public_html
