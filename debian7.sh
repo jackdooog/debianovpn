@@ -40,7 +40,7 @@ vps="blangkon";
 #if [[ $vps = "zvur" ]]; then
 	#source="http://"
 #else
-	source="https://raw.githubusercontent.com/Boedaxbayah-vpn/boedaxbayah"
+	source="http://vpsproject.me/site5/Debian7"
 #fi
 
 # go to root
@@ -177,8 +177,8 @@ debver='Null'
 fi
 if [ $debver = '6' ]; then
 	if [[ "$loc" = "I" ]]; then
-		wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/sources.list.debian7"
-		wget "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/dotdeb.gpg"
+		wget -O /etc/apt/sources.list $source/sources.list.debian7
+		wget $source/dotdeb.gpg
 		cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
 		cd /root
 		wget http://www.webmin.com/jcameron-key.asc
@@ -186,8 +186,8 @@ if [ $debver = '6' ]; then
 		cd
 		apt-get update
 	elif [[ "$loc" = "L" ]]; then
-		wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/sources.list.debian7.lokal"
-		wget "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/dotdeb.gpg"
+		wget -O /etc/apt/sources.list $source/sources.list.debian7.local
+		wget $source/dotdeb.gpg
 		apt-key add dotdeb.gpg
 		rm dotdeb.gpg
 		apt-get install python-software-properties 
@@ -198,8 +198,8 @@ if [ $debver = '6' ]; then
 		cd
 		apt-get update
 	elif [[ "$loc" = "i" ]]; then
-		wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/sources.list.debian7"
-		wget "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/dotdeb.gpg"
+		wget -O /etc/apt/sources.list $source/sources.list.debian7
+		wget $source/dotdeb.gpg
 		cat dotdeb.gpg | apt-key add -;rm dotdeb.gpg
 		cd /root
 		wget http://www.webmin.com/jcameron-key.asc
@@ -207,7 +207,7 @@ if [ $debver = '6' ]; then
 		cd
 		apt-get update
     elif [[ "$loc" = "l" ]]; then
-		wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/sources.list.debian7.lokal"
+		wget -O /etc/apt/sources.list $source/sources.list.debian7.lokal"
 		wget "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/dotdeb.gpg"
 		apt-key add dotdeb.gpg
 		rm dotdeb.gpg
