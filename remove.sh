@@ -25,7 +25,7 @@ if [ $OSystem = 'debian' ]; then
 	rm /root/jcameron-key.asc
 	rm /root/squid.sh
 	rm /root/debian7.sh
-	rm /root/rm.it
+	rm /root/remove.sh
 	echo "Removed"
 elif [ $OSystem = 'centos' ]; then
 	rm -f /root/easy-rsa-2.2.0_master.tar.gz
