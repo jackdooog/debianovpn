@@ -44,10 +44,7 @@ vps="blangkon";
 
 # go to root
 cd
-echo -e "\e[40;38;5;101m
-echo "=============================="
-echo "        MULA SETUP        "
-echo "=============================="
+
 
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
