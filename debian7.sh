@@ -73,7 +73,9 @@ apt-get -y --purge remove sendmail*;
 apt-get -y --purge remove bind9*;
 apt-get -y --purge remove dropbear*;
 #apt-get -y autoremove;
-
+echo "=============================="
+echo "        MULA SETUP        "
+echo "=============================="
 # set repo
 ver=`cat /etc/debian_version`
 if [ $ver = '6.0' ]
@@ -377,7 +379,9 @@ sudo gem install lolcat
 cd
 rm -rf /root/.bashrc
 wget -O /root/.bashrc $source/debian7/.bashrc
-
+echo "=============================="
+echo "        MULA SETUP        "
+echo "=============================="
 # Install Webserver Port 81
 apt-get install nginx php5 libapache2-mod-php5 php5-fpm php5-cli php5-mysql php5-mcrypt libxml-parser-perl -y
 rm /etc/nginx/sites-enabled/default
@@ -397,7 +401,9 @@ wget -O /home/vps/public_html/index.html "http://borneobesthosting.me/index.html
 service php5-fpm restart
 service nginx restart
 cd
-
+echo "=============================="
+echo "        MULA SETUP        "
+echo "=============================="
 # install openvpn
 wget -O /etc/openvpn/openvpn.tar "https://github.com/Mbah-Shondong/Debian732/raw/master/Debian7/openvpn-debian.tar"
 cd /etc/openvpn/
@@ -417,7 +423,9 @@ cd /etc/openvpn/
 wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/Mbah-Shondong/Debian732/master/Debian7/client-1194.conf"
 sed -i $MYIP2 /etc/openvpn/client.ovpn;
 cp client.ovpn /home/vps/public_html/
-
+echo "=============================="
+echo "        MULA SETUP        "
+echo "=============================="
 # install mrtg
 apt-get update;apt-get -y install snmpd;
 wget -O /etc/snmp/snmpd.conf $source/debian7/snmpd.conf
@@ -437,15 +445,18 @@ if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then mkdir -p /var/log/mrtg ; e
 if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then mkdir -p /var/log/mrtg ; env LANG=C /usr/bin/mrtg /etc/mrtg.cfg 2>&1 | tee -a /var/log/mrtg/mrtg.log ; fi
 if [ -x /usr/bin/mrtg ] && [ -r /etc/mrtg.cfg ]; then mkdir -p /var/log/mrtg ; env LANG=C /usr/bin/mrtg /etc/mrtg.cfg 2>&1 | tee -a /var/log/mrtg/mrtg.log ; fi
 cd
-
+echo "=============================="
+echo "        MULA SETUP        "
+echo "=============================="
 # setting port ssh
 sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
 #sed -i '/Port 22/a Port 80' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i 's/#Banner/Banner/g' /etc/ssh/sshd_config
 service ssh restart
-
-
+echo "=============================="
+echo "        MULA SETUP        "
+echo "=============================="
 # Install Dropbear
 apt-get install zlib1g-dev dpkg-dev dh-make -y
 wget https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/dropbear-2014.63.tar.bz2
@@ -475,7 +486,9 @@ chmod 0644 /bannerssh
 service dropbear restart
 service ssh restart
 cd
-
+echo "=============================="
+echo "        MULA SETUP        "
+echo "=============================="
 # Install VNSTAT
 apt-get install vnstat -y
 cd /home/vps/public_html/
