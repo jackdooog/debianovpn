@@ -3,8 +3,8 @@ clear
 echo "=============================="
 echo "        Selamat Datang        "
 echo "=============================="
-echo "Ketik 'I' Untuk VPS Non-Lokal"
-echo "Ketik 'L' Untuk VPS Lokal" 
+echo "Ketik 'I' SETUL VPS Non-Lokal"
+echo "Ketik 'L' SETUP VPS Lokal" 
 echo "=============================="
 read -p "Location : " -e loc
 apt-get update
@@ -44,6 +44,10 @@ vps="blangkon";
 
 # go to root
 cd
+echo -e "\e[40;38;5;101m
+echo "=============================="
+echo "        MULA SETUP        "
+echo "=============================="
 
 # disable ipv6
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
