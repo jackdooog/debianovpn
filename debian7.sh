@@ -772,7 +772,7 @@ echo "nohup ./cron.sh &" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
 echo -e "\e[40;38;5;44m " 
 echo "=============================="
-echo "        FINSIH AND THANK YOU    "
+echo "   RESTART ALL SERVICE    "
 echo "=============================="
 # finishing
 chown -R www-data:www-data /home/vps/public_html
@@ -790,7 +790,10 @@ service webmin restart
 cd
 rm -f /root/.bash_history && history -c
 echo "unset HISTFILE" >> /etc/profile
-
+echo -e "\e[40;38;5;226m " 
+echo "==============================================="
+echo " FINSIH AND THANK YOU / Please Restart You VPS   "
+echo "==============================================="
 # info
 clear
 echo "Autoscript Edited BY Boedaxbayah:" | tee log-install.txt
