@@ -627,6 +627,18 @@ wget https://raw.githubusercontent.com/jackdooog/debianovpn/master/debovpn.sh
 chmod +x debovpn sh
 ./debovpn.sh
 
+# install ssl
+apt-get update
+apt-get upgrade
+apt-get install stunnel4
+wget -O /etc/stunnel/stunnel.conf "http://insomnet4u.me/aneka/aneka/stunnel.conf"
+openssl genrsa -out key.pem 2048
+openssl req -new -x509 -key key.pem -out cert.pem -days 1095
+cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
+sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
+/etc/init.d/stunnel4 restart
+cd
+
 # Finishing
 wget -O /etc/vpnfix.sh "https://raw.githubusercontent.com/jackdooog/debianovpn/master/vpnfix.sh"
 chmod 777 /etc/vpnfix.sh
