@@ -704,10 +704,3 @@ echo "Log Instalasi --> /root/log-install.txt" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo " !!! SILAHKAN REBOOT VPS ANDA !!!" | tee -a log-install.txt
 echo "=======================================================" | tee -a log-install.txt
-cd ~/
-rm -f /root/B7.sh
-rm -f /root/pptp.sh
-rm -f /root/ovpn.sh
-rm -f /root/dropbear-2012.55.tar.bz2
-rm -rf /root/dropbear-2012.55
-rm -f /root/IP
