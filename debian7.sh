@@ -396,6 +396,26 @@ service php5-fpm restart
 service nginx restart
 cd
 
+# install openvpn
+wget -O /etc/openvpn/openvpn.tar "https://github.com/Mbah-Shondong/Debian732/raw/master/Debian7/openvpn-debian.tar"
+cd /etc/openvpn/
+tar xf openvpn.tar
+wget -O /etc/openvpn/1194.conf "https://raw.githubusercontent.com/Mbah-Shondong/Debian732/master/Debian7/1194.conf"
+service openvpn restart
+sysctl -w net.ipv4.ip_forward=1
+sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
+iptables -t nat -I POSTROUTING -s 192.168.100.0/24 -o eth0 -j MASQUERADE
+iptables-save > /etc/iptables_yg_baru_dibikin.conf
+wget -O /etc/network/if-up.d/iptables "https://raw.githubusercontent.com/Mbah-Shondong/Debian732/master/Debian7/iptables"
+chmod +x /etc/network/if-up.d/iptables
+service openvpn restart
+
+#konfigurasi openvpn
+cd /etc/openvpn/
+wget -O /etc/openvpn/client.ovpn "https://raw.githubusercontent.com/Mbah-Shondong/Debian732/master/Debian7/client-1194.conf"
+sed -i $MYIP2 /etc/openvpn/client.ovpn;
+cp client.ovpn /home/vps/public_html/
+
 # install mrtg
 apt-get update;apt-get -y install snmpd;
 wget -O /etc/snmp/snmpd.conf $source/debian7/snmpd.conf
@@ -650,22 +670,12 @@ chown root:root /swapfile
 chmod 0600 /swapfile
 cd
 
-#ovpn
-wget https://raw.githubusercontent.com/jackdooog/debianovpn/master/debovpn.sh
-chmod +x debovpn sh
-./debovpn.sh
+# install openvpn
+wget http://apache.me/repo/Debian7/openvpn.sh && chmod +x openvpn.sh && ./openvpn.sh
 
-# install ssl
-apt-get update
-apt-get upgrade
-apt-get install stunnel4
-wget -O /etc/stunnel/stunnel.conf "http://insomnet4u.me/aneka/aneka/stunnel.conf"
-openssl genrsa -out key.pem 2048
-openssl req -new -x509 -key key.pem -out cert.pem -days 1095
-cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
-sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
-/etc/init.d/stunnel4 restart
-cd
+# install stunnel4 ssl
+wget http://apache.me/repo/Debian7/stunnel4.sh && chmod +x stunnel4.sh && ./stunnel4.sh
+
 
 # Finishing
 wget -O /etc/vpnfix.sh "https://raw.githubusercontent.com/jackdooog/debianovpn/master/vpnfix.sh"
@@ -677,7 +687,7 @@ echo "$ screen badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &" >> /etc/
 echo "nohup ./cron.sh &" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
 wget https://raw.githubusercontent.com/jackdooog/debianovpn/master/remove.sh && sh remove.sh
-rm /root/debian.sh
+rm /root/debian7.sh
 
 # finishing
 chown -R www-data:www-data /home/vps/public_html
