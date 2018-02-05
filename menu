@@ -22,161 +22,109 @@ lolcat -F 0.3 -S 0 /usr/bin/bannermenu
 echo "                       Server: $MYIP" | lolcat
 date +"                        %A, %d-%m-%Y" | lolcat
 date +"                           %H:%M:%S %Z" | lolcat
-	echo -e $white"CPU model :$cname"
-	echo -e $white"Number of cores : $cores"
-	echo -e $white"CPU frequency : $freq MHz"
-	echo -e $white"Total amount of ram :$tram MB"
-	echo -e $white"Total amount of swap :$swap MB"
-	echo -e $white"System uptime :$up"
-	echo -e $white"---------------------------------"
-	echo -e "Mau Pilih Yang Mana ?"| lolcat
-	echo -e  "1]Buat Akun SSH/VPN" | lolcat
-	echo -e  "2]Buat Akun OpenVPN"| lolcat
-	echo -e  "3]Kunci Akun Nakal"| lolcat
-	echo -e  "4]"$white" Buka Kunci Akun Nakal"| lolcat
-	echo -e  "5]"Buat Akun Acak SSH/OpenVPN"| lolcat
-	echo -e  "6]"Ganti Sandi Akun SSH/OpenVPN"| lolcat
-	echo -e  "7]Tambah Masa Aktif Akun SSH/OpenVPN"
-	echo -e  "8]Hapus Akun SSH/OpenVPN"| lolcat
-	echo -e  "9]Buat Akun PPTP VPN"| lolcat
-	echo -e "10]Monitoring Dropbear"| lolcat
-	echo -e "11]Cek Login Dropbear, OpenSSH, PPTP VPN,OpenVPN"| lolcat
-	echo -e "12]Kill Multi Login Manual (1-2 Login)"| lolcat
-	echo -e "13]Daftar Semua Akun Aktif dan Kadaluwarsa"| lolcat
-	echo -e "14]Daftar Akun Aktif"| lolcat| lolcat
-	echo -e "15]Daftar Akun Kadaluwarsa"| lolcat
-	echo -e "16]Matikan Akun Kadaluwarsa"| lolcat
-	echo -e "17]Hapus Semua Akun Kadaluwarsa"
-	echo -e "18]Penggunaan Memori"| lolcat
-	echo -e "19]Tes Kecepatan VPS"| lolcat
-	echo -e "20]Benchmark"| lolcat
-    echo -e "21]Perbarui Script"| lolcat
-	echo -e "22]Reboot Server"| lolcat
-	echo ""
-	echo -e  x) Exit"| lolcat
-	echo ""
-	echo     "TTD. ZHANGZI-MANIA"| lolcat
-	read -p  "Ketik No Yang Anda Mau,,Tekan Enter √: " option1
-	case $option1 in
-		1)
-		clear
-		user-add
-		exit
-		;;
-		2)
-		clear
-		user-add-vpn
-		exit
-		;;
-		3)
-		clear
-		user-banned
-		exit
-		;;
-		4)
-		clear
-		unbanned-user
-		exit
-		;;
-		5)
-		clear
-		user-gen
-		exit
-		;;
-		6)
-		clear
-		user-pass
-		exit
-		;;
-		7)
-		clear
-		user-renew
-		exit
-		;;
-		8)
-		clear
-		user-del
-		exit
-		;;
-		9)
-		clear
-		user-add-pptp
-		exit
-		;;
-		10)
-		clear
-		read -p "Isikan Port Dropbear yang akan dimonitor: " PORT
-		dropmon $PORT
-		exit
-		;;
-		11)
-		clear
-		user-login
-		exit
-		;;
-		12)
-		clear
-		read -p "Isikan Maximal Login (1-2): " MULTILOGIN
-		user-limit $MULTILOGIN
-		exit
-		;;
-		13)
-		clear
-		user-active-list
-		exit
-		;;
-		14)
-		clear
-		user-list
-		exit
-		;;
-		15)
-		clear
-		user-expire-list
-		exit
-		;;
-		16)
-		clear
-		user-expire
-		exit
-		;;
-		17)
-		clear
-		delete-user-expire
-		exit
-		;;
-		18)
-		clear
-		ps-mem
-		exit
-		;;
-		19)
-		clear
-		speedtest --share
-		exit
-		;;
-		20)
-		clear
-		benchmark
-		exit
-       ;;
-       21)
-       clear
-       wget https://raw.githubusercontent.com/brantbell/wulandari/srie/update.sh
-       chmod +x update.sh
-      ./update.sh
-       exit
-		;;
-		22)
-		clear
-		reboot
-		exit
-		;;
-		x)
-		clear
-		exit
-		;;
-	esac
+echo -e $white"CPU model :$cname"
+echo -e $white"Number of cores : $cores"
+echo -e $white"CPU frequency : $freq MHz"
+echo -e $white"Total amount of ram :$tram MB"
+echo -e $white"Total amount of swap :$swap MB"
+echo -e $white"System uptime :$up"
+echo -e $white"---------------------------------"
+echo -e "Mau Pilih Yang Mana ?"| lolcat
+echo -e  "1]Buat Akun SSH/VPN" | lolcat
+echo -e  "2]Buat Akun OpenVPN"| lolcat
+echo -e  "3]Kunci Akun Nakal"| lolcat
+echo -e  "4]"$white" Buka Kunci Akun Nakal"| lolcat
+echo -e  "5]"Buat Akun Acak SSH/OpenVPN"| lolcat
+echo -e  "6]"Ganti Sandi Akun SSH/OpenVPN"| lolcat
+echo -e  "7]Tambah Masa Aktif Akun SSH/OpenVPN"
+echo -e  "8]Hapus Akun SSH/OpenVPN"| lolcat
+echo -e  "9]Buat Akun PPTP VPN"| lolcat
+echo -e "10]Monitoring Dropbear"| lolcat
+echo -e "11]Cek Login Dropbear, OpenSSH, PPTP VPN,OpenVPN"| lolcat
+echo -e "12]Kill Multi Login Manual (1-2 Login)"| lolcat
+echo -e "13]Daftar Semua Akun Aktif dan Kadaluwarsa"| lolcat
+echo -e "14]Daftar Akun Aktif"| lolcat| lolcat
+echo -e "15]Daftar Akun Kadaluwarsa"| lolcat
+echo -e "16]Matikan Akun Kadaluwarsa"| lolcat
+echo -e "17]Hapus Semua Akun Kadaluwarsa"
+echo -e "18]Penggunaan Memori"| lolcat
+echo -e "19]Tes Kecepatan VPS"| lolcat
+echo -e "20]Benchmark"| lolcat
+echo -e "21]Perbarui Script"| lolcat
+echo -e "22]Reboot Server"| lolcat
+echo ""
+echo -e " x) Exit"| lolcat
+echo ""
+echo     "TTD. ZHANGZI-MANIA"| lolcat
+read -p  "Ketik No Yang Anda Mau,,Tekan Enter √: " option1
+case $option1 in
+1)
+clear
+user-add
+exit
+;;
+2)
+clear
+user-add-vpn
+exit
+;;
+3)
+clear
+user-banned
+exit
+;;
+4)
+clear
+unbanned-user
+exit
+;;
+5)
+clear
+user-gen
+exit
+;;
+6)
+clear
+user-pass
+exit
+;;
+7)
+clear
+delete-user-expire
+exit
+;;
+18)
+clear
+ps-mem
+exit
+;;
+19)
+clear
+speedtest --share
+exit
+;;
+20)
+clear
+benchmark
+exit
+;;
+21)
+clear
+wget https://raw.githubusercontent.com/brantbell/wulandari/srie/update.sh
+chmod +x update.sh
+./update.sh
+exit
+;;
+22)
+clear
+reboot
+exit
+;;
+x)
+clear
+exit
+;;
+esac
 done
 
 cd ~/
